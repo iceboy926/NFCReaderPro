@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		10A7A9381DE2C71900FEBD5F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9371DE2C71900FEBD5F /* main.m */; };
+		10A7A93B1DE2C71900FEBD5F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A93A1DE2C71900FEBD5F /* AppDelegate.m */; };
+		10A7A93E1DE2C71900FEBD5F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A93D1DE2C71900FEBD5F /* MainViewController.m */; };
+		10A7A9411DE2C71900FEBD5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10A7A93F1DE2C71900FEBD5F /* Main.storyboard */; };
+		10A7A9431DE2C71900FEBD5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10A7A9421DE2C71900FEBD5F /* Assets.xcassets */; };
+		10A7A9461DE2C71900FEBD5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10A7A9441DE2C71900FEBD5F /* LaunchScreen.storyboard */; };
+		10A7A95D1DE2C81100FEBD5F /* DKBleDevInitInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9511DE2C81100FEBD5F /* DKBleDevInitInfo.m */; };
+		10A7A95E1DE2C81100FEBD5F /* DKBleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9531DE2C81100FEBD5F /* DKBleManager.m */; };
+		10A7A95F1DE2C81100FEBD5F /* DKComByteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9561DE2C81100FEBD5F /* DKComByteManager.m */; };
+		10A7A9601DE2C81100FEBD5F /* DKDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9581DE2C81100FEBD5F /* DKDeviceManager.m */; };
+		10A7A9621DE2C81100FEBD5F /* NSData+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A95C1DE2C81100FEBD5F /* NSData+Hex.m */; };
+		10A7A9751DE2C82500FEBD5F /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9641DE2C82500FEBD5F /* Card.m */; };
+		10A7A9761DE2C82500FEBD5F /* CpuCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9661DE2C82500FEBD5F /* CpuCard.m */; };
+		10A7A9771DE2C82500FEBD5F /* DESFire.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9681DE2C82500FEBD5F /* DESFire.m */; };
+		10A7A9781DE2C82500FEBD5F /* FeliCa.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A96A1DE2C82500FEBD5F /* FeliCa.m */; };
+		10A7A9791DE2C82500FEBD5F /* Iso14443bCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A96C1DE2C82500FEBD5F /* Iso14443bCard.m */; };
+		10A7A97A1DE2C82500FEBD5F /* Iso15693Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A96E1DE2C82500FEBD5F /* Iso15693Card.m */; };
+		10A7A97B1DE2C82500FEBD5F /* Mifare.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9701DE2C82500FEBD5F /* Mifare.m */; };
+		10A7A97C1DE2C82500FEBD5F /* Ntag21x.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9721DE2C82500FEBD5F /* Ntag21x.m */; };
+		10A7A97D1DE2C82500FEBD5F /* Ultralight.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9741DE2C82500FEBD5F /* Ultralight.m */; };
+		10A7A9801DE2C9BF00FEBD5F /* NRBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A97F1DE2C9BF00FEBD5F /* NRBaseNavigationController.m */; };
+		10A7A9861DE2D3C500FEBD5F /* ScanDeviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9851DE2D3C500FEBD5F /* ScanDeviceListViewController.m */; };
+		10A7A9891DE2D3F600FEBD5F /* NRBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9881DE2D3F600FEBD5F /* NRBaseTableViewController.m */; };
+		10A7A98B1DE2D52D00FEBD5F /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10A7A98A1DE2D52D00FEBD5F /* CoreBluetooth.framework */; };
+		10A7A98E1DE2D58700FEBD5F /* BarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A98D1DE2D58700FEBD5F /* BarChart.m */; };
+		10A7A9911DE2EB9F00FEBD5F /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9901DE2EB9F00FEBD5F /* WebViewController.m */; };
+		10A7A9931DE2F01300FEBD5F /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 10A7A9921DE2F01300FEBD5F /* index.html */; };
+		10A7A9961DE2F25900FEBD5F /* KSWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9951DE2F25900FEBD5F /* KSWaitingView.m */; };
+		C65EEB4288CAB1A0ED93D5AD /* libPods-NFCReaderPro.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D2F013E94A4238B8DAE1F9B /* libPods-NFCReaderPro.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		10A7A9331DE2C71900FEBD5F /* NFCReaderPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NFCReaderPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		10A7A9371DE2C71900FEBD5F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		10A7A9391DE2C71900FEBD5F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		10A7A93A1DE2C71900FEBD5F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		10A7A93C1DE2C71900FEBD5F /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		10A7A93D1DE2C71900FEBD5F /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		10A7A9401DE2C71900FEBD5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		10A7A9421DE2C71900FEBD5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		10A7A9451DE2C71900FEBD5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		10A7A9471DE2C71900FEBD5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10A7A9501DE2C81100FEBD5F /* DKBleDevInitInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DKBleDevInitInfo.h; path = vendor/bleNfc/DKBleDevInitInfo.h; sourceTree = "<group>"; };
+		10A7A9511DE2C81100FEBD5F /* DKBleDevInitInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DKBleDevInitInfo.m; path = vendor/bleNfc/DKBleDevInitInfo.m; sourceTree = "<group>"; };
+		10A7A9521DE2C81100FEBD5F /* DKBleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DKBleManager.h; path = vendor/bleNfc/DKBleManager.h; sourceTree = "<group>"; };
+		10A7A9531DE2C81100FEBD5F /* DKBleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DKBleManager.m; path = vendor/bleNfc/DKBleManager.m; sourceTree = "<group>"; };
+		10A7A9541DE2C81100FEBD5F /* DKBleNfc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DKBleNfc.h; path = vendor/bleNfc/DKBleNfc.h; sourceTree = "<group>"; };
+		10A7A9551DE2C81100FEBD5F /* DKComByteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DKComByteManager.h; path = vendor/bleNfc/DKComByteManager.h; sourceTree = "<group>"; };
+		10A7A9561DE2C81100FEBD5F /* DKComByteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DKComByteManager.m; path = vendor/bleNfc/DKComByteManager.m; sourceTree = "<group>"; };
+		10A7A9571DE2C81100FEBD5F /* DKDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DKDeviceManager.h; path = vendor/bleNfc/DKDeviceManager.h; sourceTree = "<group>"; };
+		10A7A9581DE2C81100FEBD5F /* DKDeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DKDeviceManager.m; path = vendor/bleNfc/DKDeviceManager.m; sourceTree = "<group>"; };
+		10A7A95B1DE2C81100FEBD5F /* NSData+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Hex.h"; path = "vendor/bleNfc/NSData+Hex.h"; sourceTree = "<group>"; };
+		10A7A95C1DE2C81100FEBD5F /* NSData+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Hex.m"; path = "vendor/bleNfc/NSData+Hex.m"; sourceTree = "<group>"; };
+		10A7A9631DE2C82500FEBD5F /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Card.h; path = vendor/bleNfc/card/Card.h; sourceTree = "<group>"; };
+		10A7A9641DE2C82500FEBD5F /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Card.m; path = vendor/bleNfc/card/Card.m; sourceTree = "<group>"; };
+		10A7A9651DE2C82500FEBD5F /* CpuCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CpuCard.h; path = vendor/bleNfc/card/CpuCard.h; sourceTree = "<group>"; };
+		10A7A9661DE2C82500FEBD5F /* CpuCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CpuCard.m; path = vendor/bleNfc/card/CpuCard.m; sourceTree = "<group>"; };
+		10A7A9671DE2C82500FEBD5F /* DESFire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DESFire.h; path = vendor/bleNfc/card/DESFire.h; sourceTree = "<group>"; };
+		10A7A9681DE2C82500FEBD5F /* DESFire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DESFire.m; path = vendor/bleNfc/card/DESFire.m; sourceTree = "<group>"; };
+		10A7A9691DE2C82500FEBD5F /* FeliCa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeliCa.h; path = vendor/bleNfc/card/FeliCa.h; sourceTree = "<group>"; };
+		10A7A96A1DE2C82500FEBD5F /* FeliCa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeliCa.m; path = vendor/bleNfc/card/FeliCa.m; sourceTree = "<group>"; };
+		10A7A96B1DE2C82500FEBD5F /* Iso14443bCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Iso14443bCard.h; path = vendor/bleNfc/card/Iso14443bCard.h; sourceTree = "<group>"; };
+		10A7A96C1DE2C82500FEBD5F /* Iso14443bCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Iso14443bCard.m; path = vendor/bleNfc/card/Iso14443bCard.m; sourceTree = "<group>"; };
+		10A7A96D1DE2C82500FEBD5F /* Iso15693Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Iso15693Card.h; path = vendor/bleNfc/card/Iso15693Card.h; sourceTree = "<group>"; };
+		10A7A96E1DE2C82500FEBD5F /* Iso15693Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Iso15693Card.m; path = vendor/bleNfc/card/Iso15693Card.m; sourceTree = "<group>"; };
+		10A7A96F1DE2C82500FEBD5F /* Mifare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mifare.h; path = vendor/bleNfc/card/Mifare.h; sourceTree = "<group>"; };
+		10A7A9701DE2C82500FEBD5F /* Mifare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Mifare.m; path = vendor/bleNfc/card/Mifare.m; sourceTree = "<group>"; };
+		10A7A9711DE2C82500FEBD5F /* Ntag21x.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ntag21x.h; path = vendor/bleNfc/card/Ntag21x.h; sourceTree = "<group>"; };
+		10A7A9721DE2C82500FEBD5F /* Ntag21x.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ntag21x.m; path = vendor/bleNfc/card/Ntag21x.m; sourceTree = "<group>"; };
+		10A7A9731DE2C82500FEBD5F /* Ultralight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ultralight.h; path = vendor/bleNfc/card/Ultralight.h; sourceTree = "<group>"; };
+		10A7A9741DE2C82500FEBD5F /* Ultralight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ultralight.m; path = vendor/bleNfc/card/Ultralight.m; sourceTree = "<group>"; };
+		10A7A97E1DE2C9BF00FEBD5F /* NRBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NRBaseNavigationController.h; sourceTree = "<group>"; };
+		10A7A97F1DE2C9BF00FEBD5F /* NRBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRBaseNavigationController.m; sourceTree = "<group>"; };
+		10A7A9811DE2CA4900FEBD5F /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		10A7A9831DE2CA8700FEBD5F /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		10A7A9841DE2D3C500FEBD5F /* ScanDeviceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanDeviceListViewController.h; sourceTree = "<group>"; };
+		10A7A9851DE2D3C500FEBD5F /* ScanDeviceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanDeviceListViewController.m; sourceTree = "<group>"; };
+		10A7A9871DE2D3F600FEBD5F /* NRBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NRBaseTableViewController.h; sourceTree = "<group>"; };
+		10A7A9881DE2D3F600FEBD5F /* NRBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRBaseTableViewController.m; sourceTree = "<group>"; };
+		10A7A98A1DE2D52D00FEBD5F /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		10A7A98C1DE2D58700FEBD5F /* BarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChart.h; sourceTree = "<group>"; };
+		10A7A98D1DE2D58700FEBD5F /* BarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarChart.m; sourceTree = "<group>"; };
+		10A7A98F1DE2EB9F00FEBD5F /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		10A7A9901DE2EB9F00FEBD5F /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		10A7A9921DE2F01300FEBD5F /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		10A7A9941DE2F25900FEBD5F /* KSWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSWaitingView.h; sourceTree = "<group>"; };
+		10A7A9951DE2F25900FEBD5F /* KSWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSWaitingView.m; sourceTree = "<group>"; };
+		2EBA64A03EBD0790ACF96521 /* Pods-NFCReaderPro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFCReaderPro.release.xcconfig"; path = "Pods/Target Support Files/Pods-NFCReaderPro/Pods-NFCReaderPro.release.xcconfig"; sourceTree = "<group>"; };
+		5D2F013E94A4238B8DAE1F9B /* libPods-NFCReaderPro.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NFCReaderPro.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D9617FF3748E40E2D4FF820 /* Pods-NFCReaderPro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFCReaderPro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NFCReaderPro/Pods-NFCReaderPro.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		10A7A9301DE2C71900FEBD5F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10A7A98B1DE2D52D00FEBD5F /* CoreBluetooth.framework in Frameworks */,
+				C65EEB4288CAB1A0ED93D5AD /* libPods-NFCReaderPro.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		10A7A92A1DE2C71900FEBD5F = {
+			isa = PBXGroup;
+			children = (
+				10A7A9351DE2C71900FEBD5F /* NFCReaderPro */,
+				10A7A9341DE2C71900FEBD5F /* Products */,
+				A3BF61259C63E98E4905ECD0 /* Pods */,
+				95E03DBD92C162E2D5546604 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		10A7A9341DE2C71900FEBD5F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				10A7A9331DE2C71900FEBD5F /* NFCReaderPro.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		10A7A9351DE2C71900FEBD5F /* NFCReaderPro */ = {
+			isa = PBXGroup;
+			children = (
+				10A7A9821DE2CA5600FEBD5F /* Config */,
+				10A7A9941DE2F25900FEBD5F /* KSWaitingView.h */,
+				10A7A9951DE2F25900FEBD5F /* KSWaitingView.m */,
+				10A7A98C1DE2D58700FEBD5F /* BarChart.h */,
+				10A7A98D1DE2D58700FEBD5F /* BarChart.m */,
+				10A7A9391DE2C71900FEBD5F /* AppDelegate.h */,
+				10A7A93A1DE2C71900FEBD5F /* AppDelegate.m */,
+				10A7A97E1DE2C9BF00FEBD5F /* NRBaseNavigationController.h */,
+				10A7A97F1DE2C9BF00FEBD5F /* NRBaseNavigationController.m */,
+				10A7A9871DE2D3F600FEBD5F /* NRBaseTableViewController.h */,
+				10A7A9881DE2D3F600FEBD5F /* NRBaseTableViewController.m */,
+				10A7A93C1DE2C71900FEBD5F /* MainViewController.h */,
+				10A7A93D1DE2C71900FEBD5F /* MainViewController.m */,
+				10A7A9841DE2D3C500FEBD5F /* ScanDeviceListViewController.h */,
+				10A7A9851DE2D3C500FEBD5F /* ScanDeviceListViewController.m */,
+				10A7A98F1DE2EB9F00FEBD5F /* WebViewController.h */,
+				10A7A9901DE2EB9F00FEBD5F /* WebViewController.m */,
+				10A7A94D1DE2C7D800FEBD5F /* Vendor */,
+				10A7A93F1DE2C71900FEBD5F /* Main.storyboard */,
+				10A7A9421DE2C71900FEBD5F /* Assets.xcassets */,
+				10A7A9441DE2C71900FEBD5F /* LaunchScreen.storyboard */,
+				10A7A9471DE2C71900FEBD5F /* Info.plist */,
+				10A7A9361DE2C71900FEBD5F /* Supporting Files */,
+			);
+			path = NFCReaderPro;
+			sourceTree = "<group>";
+		};
+		10A7A9361DE2C71900FEBD5F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				10A7A9921DE2F01300FEBD5F /* index.html */,
+				10A7A9371DE2C71900FEBD5F /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		10A7A94D1DE2C7D800FEBD5F /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				10A7A94E1DE2C7E200FEBD5F /* bleNfc */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		10A7A94E1DE2C7E200FEBD5F /* bleNfc */ = {
+			isa = PBXGroup;
+			children = (
+				10A7A9501DE2C81100FEBD5F /* DKBleDevInitInfo.h */,
+				10A7A9511DE2C81100FEBD5F /* DKBleDevInitInfo.m */,
+				10A7A9521DE2C81100FEBD5F /* DKBleManager.h */,
+				10A7A9531DE2C81100FEBD5F /* DKBleManager.m */,
+				10A7A9541DE2C81100FEBD5F /* DKBleNfc.h */,
+				10A7A9551DE2C81100FEBD5F /* DKComByteManager.h */,
+				10A7A9561DE2C81100FEBD5F /* DKComByteManager.m */,
+				10A7A9571DE2C81100FEBD5F /* DKDeviceManager.h */,
+				10A7A9581DE2C81100FEBD5F /* DKDeviceManager.m */,
+				10A7A95B1DE2C81100FEBD5F /* NSData+Hex.h */,
+				10A7A95C1DE2C81100FEBD5F /* NSData+Hex.m */,
+				10A7A94F1DE2C80000FEBD5F /* card */,
+			);
+			name = bleNfc;
+			sourceTree = "<group>";
+		};
+		10A7A94F1DE2C80000FEBD5F /* card */ = {
+			isa = PBXGroup;
+			children = (
+				10A7A9631DE2C82500FEBD5F /* Card.h */,
+				10A7A9641DE2C82500FEBD5F /* Card.m */,
+				10A7A9651DE2C82500FEBD5F /* CpuCard.h */,
+				10A7A9661DE2C82500FEBD5F /* CpuCard.m */,
+				10A7A9671DE2C82500FEBD5F /* DESFire.h */,
+				10A7A9681DE2C82500FEBD5F /* DESFire.m */,
+				10A7A9691DE2C82500FEBD5F /* FeliCa.h */,
+				10A7A96A1DE2C82500FEBD5F /* FeliCa.m */,
+				10A7A96B1DE2C82500FEBD5F /* Iso14443bCard.h */,
+				10A7A96C1DE2C82500FEBD5F /* Iso14443bCard.m */,
+				10A7A96D1DE2C82500FEBD5F /* Iso15693Card.h */,
+				10A7A96E1DE2C82500FEBD5F /* Iso15693Card.m */,
+				10A7A96F1DE2C82500FEBD5F /* Mifare.h */,
+				10A7A9701DE2C82500FEBD5F /* Mifare.m */,
+				10A7A9711DE2C82500FEBD5F /* Ntag21x.h */,
+				10A7A9721DE2C82500FEBD5F /* Ntag21x.m */,
+				10A7A9731DE2C82500FEBD5F /* Ultralight.h */,
+				10A7A9741DE2C82500FEBD5F /* Ultralight.m */,
+			);
+			name = card;
+			sourceTree = "<group>";
+		};
+		10A7A9821DE2CA5600FEBD5F /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				10A7A9811DE2CA4900FEBD5F /* PrefixHeader.pch */,
+				10A7A9831DE2CA8700FEBD5F /* Macros.h */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+		95E03DBD92C162E2D5546604 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				10A7A98A1DE2D52D00FEBD5F /* CoreBluetooth.framework */,
+				5D2F013E94A4238B8DAE1F9B /* libPods-NFCReaderPro.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A3BF61259C63E98E4905ECD0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7D9617FF3748E40E2D4FF820 /* Pods-NFCReaderPro.debug.xcconfig */,
+				2EBA64A03EBD0790ACF96521 /* Pods-NFCReaderPro.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		10A7A9321DE2C71900FEBD5F /* NFCReaderPro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10A7A94A1DE2C71900FEBD5F /* Build configuration list for PBXNativeTarget "NFCReaderPro" */;
+			buildPhases = (
+				A2073AF85302B1FBC890D3C5 /* [CP] Check Pods Manifest.lock */,
+				10A7A92F1DE2C71900FEBD5F /* Sources */,
+				10A7A9301DE2C71900FEBD5F /* Frameworks */,
+				10A7A9311DE2C71900FEBD5F /* Resources */,
+				4AF68BE6DDD04A8667D2506F /* [CP] Embed Pods Frameworks */,
+				9871A40A77B753204283A6A0 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NFCReaderPro;
+			productName = NFCReaderPro;
+			productReference = 10A7A9331DE2C71900FEBD5F /* NFCReaderPro.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		10A7A92B1DE2C71900FEBD5F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				TargetAttributes = {
+					10A7A9321DE2C71900FEBD5F = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 10A7A92E1DE2C71900FEBD5F /* Build configuration list for PBXProject "NFCReaderPro" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 10A7A92A1DE2C71900FEBD5F;
+			productRefGroup = 10A7A9341DE2C71900FEBD5F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				10A7A9321DE2C71900FEBD5F /* NFCReaderPro */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		10A7A9311DE2C71900FEBD5F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10A7A9461DE2C71900FEBD5F /* LaunchScreen.storyboard in Resources */,
+				10A7A9931DE2F01300FEBD5F /* index.html in Resources */,
+				10A7A9431DE2C71900FEBD5F /* Assets.xcassets in Resources */,
+				10A7A9411DE2C71900FEBD5F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4AF68BE6DDD04A8667D2506F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NFCReaderPro/Pods-NFCReaderPro-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9871A40A77B753204283A6A0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NFCReaderPro/Pods-NFCReaderPro-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A2073AF85302B1FBC890D3C5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		10A7A92F1DE2C71900FEBD5F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10A7A9861DE2D3C500FEBD5F /* ScanDeviceListViewController.m in Sources */,
+				10A7A9621DE2C81100FEBD5F /* NSData+Hex.m in Sources */,
+				10A7A97D1DE2C82500FEBD5F /* Ultralight.m in Sources */,
+				10A7A93E1DE2C71900FEBD5F /* MainViewController.m in Sources */,
+				10A7A9601DE2C81100FEBD5F /* DKDeviceManager.m in Sources */,
+				10A7A95E1DE2C81100FEBD5F /* DKBleManager.m in Sources */,
+				10A7A9761DE2C82500FEBD5F /* CpuCard.m in Sources */,
+				10A7A9801DE2C9BF00FEBD5F /* NRBaseNavigationController.m in Sources */,
+				10A7A95F1DE2C81100FEBD5F /* DKComByteManager.m in Sources */,
+				10A7A97A1DE2C82500FEBD5F /* Iso15693Card.m in Sources */,
+				10A7A9961DE2F25900FEBD5F /* KSWaitingView.m in Sources */,
+				10A7A97B1DE2C82500FEBD5F /* Mifare.m in Sources */,
+				10A7A98E1DE2D58700FEBD5F /* BarChart.m in Sources */,
+				10A7A9781DE2C82500FEBD5F /* FeliCa.m in Sources */,
+				10A7A9911DE2EB9F00FEBD5F /* WebViewController.m in Sources */,
+				10A7A9771DE2C82500FEBD5F /* DESFire.m in Sources */,
+				10A7A97C1DE2C82500FEBD5F /* Ntag21x.m in Sources */,
+				10A7A9891DE2D3F600FEBD5F /* NRBaseTableViewController.m in Sources */,
+				10A7A9751DE2C82500FEBD5F /* Card.m in Sources */,
+				10A7A93B1DE2C71900FEBD5F /* AppDelegate.m in Sources */,
+				10A7A95D1DE2C81100FEBD5F /* DKBleDevInitInfo.m in Sources */,
+				10A7A9381DE2C71900FEBD5F /* main.m in Sources */,
+				10A7A9791DE2C82500FEBD5F /* Iso14443bCard.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		10A7A93F1DE2C71900FEBD5F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				10A7A9401DE2C71900FEBD5F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		10A7A9441DE2C71900FEBD5F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				10A7A9451DE2C71900FEBD5F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		10A7A9481DE2C71900FEBD5F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		10A7A9491DE2C71900FEBD5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		10A7A94B1DE2C71900FEBD5F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D9617FF3748E40E2D4FF820 /* Pods-NFCReaderPro.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = /Users/jinyuheng/Desktop/zuoyongyong_ios/AutoMoBike/NFCReaderPro/NFCReaderPro/NFCReaderPro/PrefixHeader.pch;
+				INFOPLIST_FILE = NFCReaderPro/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kingyh.NFCReaderPro;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		10A7A94C1DE2C71900FEBD5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EBA64A03EBD0790ACF96521 /* Pods-NFCReaderPro.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = /Users/jinyuheng/Desktop/zuoyongyong_ios/AutoMoBike/NFCReaderPro/NFCReaderPro/NFCReaderPro/PrefixHeader.pch;
+				INFOPLIST_FILE = NFCReaderPro/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kingyh.NFCReaderPro;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		10A7A92E1DE2C71900FEBD5F /* Build configuration list for PBXProject "NFCReaderPro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10A7A9481DE2C71900FEBD5F /* Debug */,
+				10A7A9491DE2C71900FEBD5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		10A7A94A1DE2C71900FEBD5F /* Build configuration list for PBXNativeTarget "NFCReaderPro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10A7A94B1DE2C71900FEBD5F /* Debug */,
+				10A7A94C1DE2C71900FEBD5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 10A7A92B1DE2C71900FEBD5F /* Project object */;
+}
