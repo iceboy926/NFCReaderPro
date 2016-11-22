@@ -35,6 +35,7 @@
 		10A7A9911DE2EB9F00FEBD5F /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9901DE2EB9F00FEBD5F /* WebViewController.m */; };
 		10A7A9931DE2F01300FEBD5F /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 10A7A9921DE2F01300FEBD5F /* index.html */; };
 		10A7A9961DE2F25900FEBD5F /* KSWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9951DE2F25900FEBD5F /* KSWaitingView.m */; };
+		10D4DFC91DE3E49F0089B1F9 /* NFCCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 10D4DFC81DE3E49F0089B1F9 /* NFCCard.m */; };
 		C65EEB4288CAB1A0ED93D5AD /* libPods-NFCReaderPro.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D2F013E94A4238B8DAE1F9B /* libPods-NFCReaderPro.a */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +95,8 @@
 		10A7A9921DE2F01300FEBD5F /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		10A7A9941DE2F25900FEBD5F /* KSWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSWaitingView.h; sourceTree = "<group>"; };
 		10A7A9951DE2F25900FEBD5F /* KSWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSWaitingView.m; sourceTree = "<group>"; };
+		10D4DFC71DE3E49F0089B1F9 /* NFCCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NFCCard.h; sourceTree = "<group>"; };
+		10D4DFC81DE3E49F0089B1F9 /* NFCCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NFCCard.m; sourceTree = "<group>"; };
 		2EBA64A03EBD0790ACF96521 /* Pods-NFCReaderPro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFCReaderPro.release.xcconfig"; path = "Pods/Target Support Files/Pods-NFCReaderPro/Pods-NFCReaderPro.release.xcconfig"; sourceTree = "<group>"; };
 		5D2F013E94A4238B8DAE1F9B /* libPods-NFCReaderPro.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NFCReaderPro.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9617FF3748E40E2D4FF820 /* Pods-NFCReaderPro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFCReaderPro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NFCReaderPro/Pods-NFCReaderPro.debug.xcconfig"; sourceTree = "<group>"; };
@@ -134,6 +137,8 @@
 			isa = PBXGroup;
 			children = (
 				10A7A9821DE2CA5600FEBD5F /* Config */,
+				10D4DFC71DE3E49F0089B1F9 /* NFCCard.h */,
+				10D4DFC81DE3E49F0089B1F9 /* NFCCard.m */,
 				10A7A9941DE2F25900FEBD5F /* KSWaitingView.h */,
 				10A7A9951DE2F25900FEBD5F /* KSWaitingView.m */,
 				10A7A98C1DE2D58700FEBD5F /* BarChart.h */,
@@ -384,6 +389,7 @@
 				10A7A98E1DE2D58700FEBD5F /* BarChart.m in Sources */,
 				10A7A9781DE2C82500FEBD5F /* FeliCa.m in Sources */,
 				10A7A9911DE2EB9F00FEBD5F /* WebViewController.m in Sources */,
+				10D4DFC91DE3E49F0089B1F9 /* NFCCard.m in Sources */,
 				10A7A9771DE2C82500FEBD5F /* DESFire.m in Sources */,
 				10A7A97C1DE2C82500FEBD5F /* Ntag21x.m in Sources */,
 				10A7A9891DE2D3F600FEBD5F /* NRBaseTableViewController.m in Sources */,

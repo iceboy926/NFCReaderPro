@@ -9,6 +9,9 @@
 #import "MainViewController.h"
 #import "ScanDeviceListViewController.h"
 #import "WebViewController.h"
+#import "KSWaitingView.h"
+#import "NFCCard.h"
+#import "NSData+Hex.h"
 
 @interface MainViewController ()
 
@@ -16,7 +19,9 @@
 @property (nonatomic, strong) DKDeviceManager  *deviceManager;
 @property (nonatomic, strong) NSMutableString  *msgBuffer;
 @property (nonatomic, strong)UITextView *msgTextView;
+@property (nonatomic, strong) UITextField *inputTextView;
 @property (nonatomic, strong) UIButton *readerCardBtn;
+@property (nonatomic, strong) KSWaitingView *waitingView;
 
 @end
 
@@ -29,11 +34,13 @@
     [self.view addSubview:self.bleManagerBtn];
     [self.view addSubview:self.msgTextView];
     [self.view addSubview:self.readerCardBtn];
+    [self.view addSubview:self.inputTextView];
 
     [self setupNavigationView];
     
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    
 }
 
 
@@ -87,6 +94,13 @@
         make.size.mas_equalTo(CGSizeMake(150, 50));
         
     }];
+    
+    [self.inputTextView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.top.equalTo(_readerCardBtn.mas_bottom).offset(10);
+        make.size.mas_equalTo(CGSizeMake(280, 50));
+    }];
 }
 
 #pragma mark lazy load
@@ -119,6 +133,19 @@
     }
     
     return _msgTextView;
+}
+
+- (UITextField *)inputTextView
+{
+    if(_inputTextView == nil)
+    {
+        _inputTextView = [[UITextField alloc] init];
+        _inputTextView.textAlignment = NSTextAlignmentCenter;
+        _inputTextView.text = @"http://www.baidu.com";
+         //[[ UIApplication sharedApplication] openURL:[ NSURL urlWithString:urlText];
+    }
+    
+    return _inputTextView;
 }
 
 - (UIButton *)readerCardBtn
@@ -155,6 +182,15 @@
     }
     
     return _msgBuffer;
+}
+
+- (KSWaitingView *)waitingView
+{
+    if(_waitingView == nil)
+    {
+        _waitingView = [[KSWaitingView alloc] init];
+    }
+    return _waitingView;
 }
 
 
@@ -194,11 +230,174 @@
 
 - (void)readerCardBtnClicked:(UIButton *)sender
 {
-    WebViewController *webVC = [[WebViewController alloc] init];
-    webVC.title = @"";
+    //WebViewController *webVC = [[WebViewController alloc] init];
+    //webVC.title = @"";
     
-    [self.navigationController pushViewController:webVC animated:YES];
+    //[self.navigationController pushViewController:webVC animated:YES];
+    
+    if([DKBleManager sharedInstance].isConnect)
+    {
+        self.waitingView.strInputData = self.inputTextView.text;
+    
+        [self.waitingView show];
+    }
+    else
+    {
+        [self showAlert:@"请先连接蓝牙读卡器"];
+    }
 }
+
+-(void)showWaitView
+{
+    __block KSWaitingView *waitView = [[KSWaitingView alloc] init];
+    waitView.strInputData = self.inputTextView.text;
+    [waitView show];
+    
+    __block BOOL complete = NO;
+//    PFN_CALLBACK_GetTranSignature callback = param->pfn_CallBack_GetTranSignature;
+//    [GCDHelper dispatchBlock:^{
+//        if (callback) {
+//            ret = callback(param->pbSignedData, param->pulSignedDataLen);
+//        }
+//        
+//    } complete:^{
+//        
+//        complete = YES;
+//        if (waitView.currentRunLoop) {
+//            waitView.ret = ret;
+//            CFRunLoopStop(waitView.currentRunLoop);
+//        }
+//        
+//    }];
+    
+    
+    
+    [self readerCardActionWithComplete:^(NSString *strOutData){
+        
+        complete = YES;
+        
+        NSLog(@"\n read out data is %@ \n", strOutData);
+        
+        if(waitView.currentRunLoop)
+        {
+            CFRunLoopStop(waitView.currentRunLoop);
+        }
+        
+    }];
+    
+    if (!complete) {
+        waitView.currentRunLoop = CFRunLoopGetCurrent();
+        CFRunLoopRun();
+    }
+    
+    [waitView hide];
+}
+
+
+- (void)readerCardActionWithComplete:(void(^)(NSString *strOutData))completion
+{
+    
+    [self.deviceManager requestRfmSearchCard:DKIso14443A_CPUType callbackBlock:^(BOOL isblnIsSus, DKCardType cardType, NSData *CardSn, NSData *bytCarATS) {
+        
+        if(isblnIsSus)
+        {
+            NSLog(@"read card OK..card type is %d", cardType);
+            
+            if (cardType == DKIso14443A_CPUType)
+            {
+                CpuCard *card = [self.deviceManager getCard];
+                if(card != nil)
+                {
+                    
+                    [card apduExchange:[NFCCard getSelectMainFileCmdByte] callback:^(BOOL isCmdRunSuc, NSData *apduRtnData){
+                        
+                        if(isCmdRunSuc)
+                        {
+                            NSData *dataSend = [NFCCard writeCmdByteWithString:self.inputTextView.text];
+                            [card apduExchange:dataSend callback:^(BOOL isCmdRunSuc, NSData *apduRtnData){
+                                
+                                if(isCmdRunSuc)
+                                {
+                                    
+                                    [card apduExchange:[NFCCard readCmdByte] callback:^(BOOL isCmdRunSuc, NSData *apduRtnData){
+                                        
+                                        
+                                        NSString *strOut = [apduRtnData hexadecimalString];
+                                        
+                                        //NSLog(@"read out data is %@", strOut);
+                                        
+                                        if(completion)
+                                        {
+                                            completion(strOut);
+                                        }
+                                        
+                                    }];
+                                }
+                                
+                            }];
+                        }
+                        
+                        
+                    }];
+                }
+                
+            }
+            else if (cardType == DKIso14443B_CPUType)
+            {
+                
+            }
+            else if (cardType == DKFeliCa_Type)
+            {
+                
+            }
+            else if (cardType == DKUltralight_type)
+            {
+                Ntag21x *card = [self.deviceManager getCard];
+                if (card != nil) {
+                    //                    [self.msgBuffer setString:@"寻到Ultralight卡 －>UID:"];
+                    //                    [self.msgBuffer appendString:[NSString stringWithFormat:@"%@\r\n", card.uid]];
+                    //                    dispatch_async(dispatch_get_main_queue(), ^{
+                    //                        self.msgTextView.text = self.msgBuffer;
+                    //                    });
+                    //                    //发送读块0数据
+                    //                    [self.msgBuffer appendString:[NSString stringWithFormat:@"\r\n读块0\r\n"]];
+                    //                    self.msgTextView.text = self.msgBuffer;
+                    [card ultralightRead:0 callbackBlock:^(BOOL isSuc, NSData *returnData) {
+                        if (isSuc) {
+                            
+                            NSLog(@"返回:%@\r\n", returnData);
+                            //                            [self.msgBuffer appendString:[NSString stringWithFormat:@"返回:%@\r\n", returnData]];
+                            //                            dispatch_async(dispatch_get_main_queue(), ^{
+                            //                                self.msgTextView.text = self.msgBuffer;
+                            //                            });
+                            
+                            
+                            if(completion)
+                            {
+                                completion([NSString stringWithFormat:@"返回：%@\r\n", returnData]);
+                            }
+
+                        }
+                        
+                        [card close];
+                    }];
+                }
+                
+                
+            }
+            else if (cardType == DKMifare_Type)
+            {
+                
+            }
+            
+            
+            
+        }
+    }];
+    
+
+}
+
 
 
 -(void)showAlert:(NSString *)msg

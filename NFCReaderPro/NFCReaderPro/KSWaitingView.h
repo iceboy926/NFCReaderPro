@@ -8,12 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KSWaitingView : UIView
+@interface KSWaitingView : UIWindow
 
 
 @property (nonatomic, assign) int timeout;
 
 @property (nonatomic, strong) void (^CardReaderWaittingBlock)();
+
+@property (nonatomic, strong) NSString *strInputData;
+
+@property(nonatomic, assign) CFRunLoopRef currentRunLoop;
 
 -(void)show;
 

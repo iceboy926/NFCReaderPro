@@ -7,17 +7,18 @@
 //
 
 #import "KSWaitingView.h"
+#import "NFCCard.h"
+#import "NSData+Hex.h"
 
-
-#define KSMessageBoxFrame CGRectMake(0.0f, 0.0f, 280.0f, 240.0f)
+#define KSMessageBoxFrame CGRectMake(0.0f, 0.0f, 280.0f, 180.0f)
 
 @interface KSWaitingView()
 {
     UIView *_mask;
-    UIImageView *_messageBg;
+    UIView *_messageBg;
     UIActivityIndicatorView *_indicator;
     UILabel *_messageLabel;
-    
+    NSLock *locker;
 }
 
 @property (nonatomic, strong) UILabel *messageLabel;
@@ -37,29 +38,32 @@
 
 -(id)init
 {
-    CGRect rect = [UIScreen mainScreen].bounds;
-    
-    self = [super initWithFrame:rect];
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    self = [super initWithFrame:window.bounds];
     if(self)
     {
-        //self.windowLevel = UIWindowLevelNormal;
-        //self.backgroundColor = [UIColor clearColor];
+        self.windowLevel = UIWindowLevelNormal;
+        self.backgroundColor = [UIColor clearColor];
+        
+        self.backgroundColor = [UIColor clearColor];
         
         UIView *mask = [[UIView alloc] initWithFrame:self.bounds];
-        mask.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.8];
-        mask.alpha = 1;
-        
+        mask.backgroundColor =  [UIColor blackColor];
+        mask.alpha = 0;
+        _mask = mask;
         [self addSubview:mask];
         
         
-        UIImageView *messageBoxBg = [[UIImageView alloc] initWithFrame:KSMessageBoxFrame];
+        UIView *messageBoxBg = [[UIView alloc] initWithFrame:KSMessageBoxFrame];
         messageBoxBg.center = CGPointMake(CGRectGetWidth(self.frame)/2.0f, CGRectGetHeight(self.frame)/2.0f);
-        messageBoxBg.image = [[UIImage imageNamed:@"alert_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+//        messageBoxBg.image = [[UIImage imageNamed:@"alert_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
         messageBoxBg.layer.shadowColor = [UIColor blackColor].CGColor;
         messageBoxBg.layer.shadowOffset = CGSizeMake(0, 0);
         messageBoxBg.layer.shadowRadius = 5.0f;
         messageBoxBg.layer.shadowOpacity = 0.2;
         messageBoxBg.layer.shouldRasterize = YES;
+        
+        messageBoxBg.backgroundColor = [UIColor whiteColor];
         
         _messageBg = messageBoxBg;
         [self addSubview:messageBoxBg];
@@ -86,13 +90,13 @@
         
         _deviceManager = [[DKDeviceManager alloc] init];
         
+        locker = [[NSLock alloc] init];
+        
     }
     
     
     return self;
 }
-
-
 
 
 
@@ -102,10 +106,10 @@
     
     self.messageLabel.text = @"等待读卡操作......";
     
-    //_mask.alpha = 0;
+    _mask.alpha = 0;
     [UIView animateWithDuration:0.1 animations:^{
        
-        //_mask.alpha = 0.8f;
+        _mask.alpha = 0.4f;
         
         [[[[UIApplication sharedApplication] delegate] window] addSubview:self];
     }];
@@ -127,10 +131,10 @@
 
 -(void)hide
 {
-    //_mask.alpha = 0.8;
+    _mask.alpha = 0.2;
     [_timer invalidate];
     [UIView animateWithDuration:0.1 animations:^{
-        //_mask.alpha = 0.0f;
+        _mask.alpha = 0.0f;
     }];
     
     
@@ -149,17 +153,118 @@
     //_messageBg.layer.transform = CATransform3DIdentity;
     [_indicator stopAnimating];
     
-    [UIView animateWithDuration:0.1 animations:^{
+   // [UIView animateWithDuration:0.1 animations:^{
         //_mask.alpha = 0.0f;
         [self removeFromSuperview];
-    }];
+    //}];
     
 }
 
 - (void)refresh:(NSTimer *)timer
-{
-
-    self.messageLabel.text = [NSString stringWithFormat:@"正在连接设备，剩余时间%d秒", _timeout];
+{    
+    [self.deviceManager requestRfmSearchCard:DKCardTypeDefault callbackBlock:^(BOOL isblnIsSus, DKCardType cardType, NSData *CardSn, NSData *bytCarATS) {
+    
+        if(isblnIsSus)
+        {
+            NSLog(@"read card OK..card type is %d", cardType);
+            
+            if (cardType == DKIso14443A_CPUType)
+            {
+                CpuCard *card = [self.deviceManager getCard];
+                if(card != nil)
+                {
+                    [card apduExchange:[NFCCard getSelectMainFileCmdByte] callback:^(BOOL isCmdRunSuc, NSData *apduRtnData){
+                    
+                        if(isCmdRunSuc)
+                        {
+                            [card apduExchange:[NFCCard readCmdByte] callback:^(BOOL isCmdRunSuc, NSData *apduRtnData){
+                                
+                                if(isCmdRunSuc)
+                                {
+                                    
+                                    NSString *strOut = [apduRtnData hexadecimalString];
+                                    
+                                    NSLog(@" read out data is %@", strOut);
+                                    
+                                    NSData *dataSend = [NFCCard writeCmdByteWithString:self.strInputData];
+                                    [card apduExchange:dataSend callback:^(BOOL isCmdRunSuc, NSData *apduRtnData){
+                                        
+                                        if(isCmdRunSuc)
+                                        {
+                                            
+                                            [card apduExchange:[NFCCard readCmdByte] callback:^(BOOL isCmdRunSuc, NSData *apduRtnData){
+                                                
+                                                
+                                                NSString *strOut = [apduRtnData hexadecimalString];
+                                                
+                                                NSLog(@"DKIso14443A_CPUType read out data is %@", strOut);
+                                                
+                                                int len = strOut.length - 4;
+                                                
+                                                NSString *stroutData = [strOut substringToIndex:len];
+                                                
+                                                NSLog(@"DKIso14443A_CPUType read out data is %@", stroutData);
+                                                
+                                                NSData *dataout = [NSData dataWithHexString:stroutData];
+                                                
+                                                NSString *strurl = [[NSString alloc] initWithData:dataout encoding:NSUTF8StringEncoding];
+                                                
+                                                NSLog(@"strurl = %@", strurl);
+                                                
+                                                [self hide];
+                                                
+                                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:strurl]];
+                                                
+                                                [card close];
+                                            }];
+                                        }
+                                        
+                                    }];
+                                }
+                            }];
+                        }
+                    }];
+                }
+                
+            }
+            else if (cardType == DKIso14443B_CPUType)
+            {
+                
+            }
+            else if (cardType == DKFeliCa_Type)
+            {
+                
+            }
+            else if (cardType == DKUltralight_type)
+            {
+                Ntag21x *card = [self.deviceManager getCard];
+                if (card != nil) {
+                    
+                    NSLog(@"寻到Ultralight卡 －>UID: %@", card.uid);
+                    
+                    [card ultralightRead:0 callbackBlock:^(BOOL isSuc, NSData *returnData) {
+                        if (isSuc) {
+                            
+                            NSString *strOut = [returnData hexadecimalString];
+                            
+                            NSLog(@"DKUltralight_type read out data is %@", strOut);
+                            
+                            sleep(2);
+                            
+                        }
+                        
+                        [card close];
+                    }];
+                    
+                }
+            }
+            else if (cardType == DKMifare_Type)
+            {
+                
+            }
+            
+        }
+    }];
     
 }
 
