@@ -11,8 +11,8 @@
                 share('测试分享的标题','测试分享的内容','url=http://www.baidu.com');
             }
 
-            function locationClick() {
-                getLocation();
+            function CardReaderClick() {
+                CardReader(document.getElementById("returnValue").value);
             }
 
             function setLocation(location) {
@@ -67,15 +67,13 @@
             </head>
     
     <body>
-        <h3>这是按钮调用</h3>
-        <input type="button" value="扫一扫" onclick="scanClick()" />
-        <input type="button" value="获取定位" onclick="locationClick()" />
-
-    
-        <h3>这是回调结果展示区</h3>
-        <textarea id ="returnValue" type="value" rows="5" cols="50">
+        <h3>按钮调用</h3>
+        <input type="button" value="连接设备" onclick="scanClick()" />
         
-        </textarea>
+        <input type="button" value="读卡信息" onclick="CardReaderClick()" />
+
+        <h3>网址地址</h3>
+        <textarea id ="returnValue" type="value" rows="5" cols="50">http://www.baidu.com</textarea>
         
 
         

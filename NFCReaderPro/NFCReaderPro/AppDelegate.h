@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "MainViewController.h"
+#import "MainWebViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 @property (nonatomic, strong) MainViewController *mainVC;
+
+@property (nonatomic, strong) MainWebViewController *mainwebVC;
 @end
 

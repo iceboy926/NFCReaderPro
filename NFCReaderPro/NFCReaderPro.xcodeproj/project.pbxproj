@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		101BD9C31DE542790037EE82 /* ListSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 101BD9C21DE542790037EE82 /* ListSelectView.m */; };
+		101BD9C71DE585EB0037EE82 /* MainWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 101BD9C61DE585EB0037EE82 /* MainWebViewController.m */; };
 		10A7A9381DE2C71900FEBD5F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9371DE2C71900FEBD5F /* main.m */; };
 		10A7A93B1DE2C71900FEBD5F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A93A1DE2C71900FEBD5F /* AppDelegate.m */; };
 		10A7A93E1DE2C71900FEBD5F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A93D1DE2C71900FEBD5F /* MainViewController.m */; };
@@ -44,6 +45,8 @@
 		101BD9C11DE542790037EE82 /* ListSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListSelectView.h; sourceTree = "<group>"; };
 		101BD9C21DE542790037EE82 /* ListSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListSelectView.m; sourceTree = "<group>"; };
 		101BD9C41DE542F60037EE82 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		101BD9C51DE585EB0037EE82 /* MainWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWebViewController.h; sourceTree = "<group>"; };
+		101BD9C61DE585EB0037EE82 /* MainWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWebViewController.m; sourceTree = "<group>"; };
 		10A7A9331DE2C71900FEBD5F /* NFCReaderPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NFCReaderPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10A7A9371DE2C71900FEBD5F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		10A7A9391DE2C71900FEBD5F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 				10A7A9851DE2D3C500FEBD5F /* ScanDeviceListViewController.m */,
 				10A7A98F1DE2EB9F00FEBD5F /* WebViewController.h */,
 				10A7A9901DE2EB9F00FEBD5F /* WebViewController.m */,
+				101BD9C51DE585EB0037EE82 /* MainWebViewController.h */,
+				101BD9C61DE585EB0037EE82 /* MainWebViewController.m */,
 				10A7A94D1DE2C7D800FEBD5F /* Vendor */,
 				10A7A93F1DE2C71900FEBD5F /* Main.storyboard */,
 				10A7A9421DE2C71900FEBD5F /* Assets.xcassets */,
@@ -393,6 +398,7 @@
 				10A7A9621DE2C81100FEBD5F /* NSData+Hex.m in Sources */,
 				101BD9C31DE542790037EE82 /* ListSelectView.m in Sources */,
 				10A7A97D1DE2C82500FEBD5F /* Ultralight.m in Sources */,
+				101BD9C71DE585EB0037EE82 /* MainWebViewController.m in Sources */,
 				10A7A93E1DE2C71900FEBD5F /* MainViewController.m in Sources */,
 				10A7A9601DE2C81100FEBD5F /* DKDeviceManager.m in Sources */,
 				10A7A95E1DE2C81100FEBD5F /* DKBleManager.m in Sources */,

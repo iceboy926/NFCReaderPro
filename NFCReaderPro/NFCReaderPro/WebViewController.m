@@ -112,7 +112,13 @@
    
 }
 
-
+- (void)addScanActionWithContext:(JSContext *)context
+{
+    context[@"scan"] = ^(){
+        
+        
+    };
+}
 
 
 - (void)addPayActionWithContext:(JSContext *)context

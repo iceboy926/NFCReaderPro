@@ -22,8 +22,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.mainVC = [[MainViewController alloc] init];
+    self.mainwebVC = [[MainWebViewController alloc] init];
     
-    NRBaseNavigationController *navigate = [[NRBaseNavigationController alloc] initWithRootViewController:self.mainVC];
+    NRBaseNavigationController *navigate = [[NRBaseNavigationController alloc] initWithRootViewController:self.mainwebVC];
     
     
     self.window.rootViewController =  navigate;
