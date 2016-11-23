@@ -27,6 +27,7 @@
     [self.view addSubview:self.webView];
     [self addUIConstraints];
     [self setUpNavigationBar];
+    self.title = @"页面";
 }
 
 
@@ -48,15 +49,21 @@
 
 - (void)setUpNavigationBar
 {
+    UIBarButtonItem *seperatorBarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    
+    seperatorBarItem.width = -10;
+    
     UIBarButtonItem *backBar = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backup)];
     
-    self.navigationItem.leftBarButtonItem = backBar;
+    UIBarButtonItem *imageBack = [[UIBarButtonItem alloc] initWithCustomView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"back_white"]]];
+    
+    self.navigationItem.leftBarButtonItems = @[imageBack, backBar];
 }
 
 - (void)showWebView
 {
-    NSURL *htmlURL = [[NSBundle mainBundle] URLForResource:@"index.html" withExtension:nil];
-    //NSURL *htmlURL = [NSURL URLWithString:@"http://www.baidu.com"];
+    //NSURL *htmlURL = [[NSBundle mainBundle] URLForResource:@"index.html" withExtension:nil];
+    NSURL *htmlURL = [NSURL URLWithString:self.strUrl];
     NSURLRequest *request = [NSURLRequest requestWithURL:htmlURL];
     
     self.webView.backgroundColor = [UIColor clearColor];
@@ -90,7 +97,7 @@
 {
     NSLog(@"webViewDidFinishLoad");
     
-    [self addCustomActions];
+   // [self addCustomActions];
 }
 
 #pragma mark - private method

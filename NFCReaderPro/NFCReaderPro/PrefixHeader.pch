@@ -13,6 +13,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 
 #import "Macros.h"
+#import "Header.h"
 #import "NRBaseNavigationController.h"
 #import "DKBleNfc.h"
 

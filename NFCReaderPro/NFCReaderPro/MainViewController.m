@@ -12,6 +12,8 @@
 #import "KSWaitingView.h"
 #import "NFCCard.h"
 #import "NSData+Hex.h"
+#import "ListSelectView.h"
+#import "WebViewController.h"
 
 @interface MainViewController ()
 
@@ -21,7 +23,8 @@
 @property (nonatomic, strong) UITextField *inputTextView;
 @property (nonatomic, strong) UIButton *readerCardBtn;
 @property (nonatomic, strong) KSWaitingView *waitingView;
-
+@property (nonatomic, strong) ListSelectView *listView;
+@property (nonatomic, strong) UILabel *titleLabel;
 @end
 
 @implementation MainViewController
@@ -32,7 +35,7 @@
 
     [self.view addSubview:self.bleManagerBtn];
     [self.view addSubview:self.readerCardBtn];
-    
+    [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.inputTextView];
 
     [self setupNavigationView];
@@ -82,25 +85,34 @@
 {
     [self.bleManagerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(self.view.mas_top).offset(10);
-        make.size.mas_equalTo(CGSizeMake(150, 50));
+        make.left.equalTo(self.view.mas_left).offset(10);
+        make.top.equalTo(self.view.mas_top).offset(20);
+        make.size.mas_equalTo(CGSizeMake(150, 40));
+        
+    }];
+    
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.view.mas_left).offset(10);
+        make.top.equalTo(_bleManagerBtn.mas_bottom).offset(20);
+        make.size.mas_equalTo(CGSizeMake(60, 40));
         
     }];
     
     [self.inputTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.centerX.equalTo(self.view.mas_centerX);
+        make.left.equalTo(_titleLabel.mas_right);
         make.top.equalTo(_bleManagerBtn.mas_bottom).offset(20);
-        make.size.mas_equalTo(CGSizeMake(280, 50));
+        make.height.mas_equalTo(40);
+        make.right.equalTo(self.view.mas_right);
     }];
 
 
     [self.readerCardBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.centerX.equalTo(self.view.mas_centerX);
+        make.left.equalTo(self.view.mas_left).offset(10);
         make.top.equalTo(_inputTextView.mas_bottom).offset(10);
-        make.size.mas_equalTo(CGSizeMake(150, 50));
+        make.size.mas_equalTo(CGSizeMake(150, 40));
         
     }];
     
@@ -115,8 +127,11 @@
         _bleManagerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         
         [_bleManagerBtn setTitle:@"查找蓝牙设备" forState:UIControlStateNormal];
-        [_bleManagerBtn setTitleColor:navigaterBarColor forState:UIControlStateNormal];
-        [_bleManagerBtn setBackgroundColor:[UIColor clearColor]];
+        [_bleManagerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        [_bleManagerBtn setBackgroundColor:customButtonColor];
+        _bleManagerBtn.layer.cornerRadius = 0.5;
+
         
         [_bleManagerBtn addTarget:self action:@selector(bleManangerClicked:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -125,15 +140,29 @@
     return _bleManagerBtn;
 }
 
+- (UILabel *)titleLabel
+{
+    if(_titleLabel == nil)
+    {
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.text = @"网址:";
+        _titleLabel.textColor = [UIColor blackColor];
+        _titleLabel.backgroundColor = [UIColor clearColor];
+    }
+    
+    return _titleLabel;
+}
 
 - (UITextField *)inputTextView
 {
     if(_inputTextView == nil)
     {
         _inputTextView = [[UITextField alloc] init];
-        _inputTextView.textAlignment = NSTextAlignmentCenter;
+        _inputTextView.layer.borderWidth = 0.3f;
+        _inputTextView.layer.borderColor = UIColorFromRGB(0xEFEFEF).CGColor;
+        _inputTextView.textAlignment = NSTextAlignmentLeft;
         _inputTextView.text = @"http://www.baidu.com";
-         //[[ UIApplication sharedApplication] openURL:[ NSURL urlWithString:urlText];
+
     }
     
     return _inputTextView;
@@ -146,8 +175,11 @@
         _readerCardBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         
         [_readerCardBtn setTitle:@"读卡操作" forState:UIControlStateNormal];
-        [_readerCardBtn setTitleColor:navigaterBarColor forState:UIControlStateNormal];
+        [_readerCardBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_readerCardBtn setBackgroundColor:[UIColor clearColor]];
+        [_readerCardBtn setBackgroundColor:customButtonColor];
+        _readerCardBtn.layer.cornerRadius = 0.5;
+
         [_readerCardBtn addTarget:self action:@selector(readerCardBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -189,6 +221,9 @@
 
 - (void)bleManangerClicked:(UIButton *)sender
 {
+    [self showListView];
+    
+    return ;
     
     ScanDeviceListViewController *scanDeviceVC = [[ScanDeviceListViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
@@ -218,19 +253,66 @@
     [self.navigationController pushViewController:scanDeviceVC animated:YES];
 }
 
+- (void)showListView
+{
+    self.listView = [[ListSelectView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    self.listView.isShowCancelBtn = YES;
+    self.listView.isShowSureBtn = NO;
+    self.listView.isShowTitle = YES;
+
+    WEAK_SELF(weakself)
+    [self.listView addTitleString:@"蓝牙设备" animated:YES completionHandler:^(BOOL blConnect) {
+        //[sender setTitle:string forState:UIControlStateNormal];
+        
+        [weakself showWait:@"正在连接.."];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [weakself hideWait];
+            
+            if(blConnect)
+            {
+                [weakself showAlert:@"连接设备成功"];
+                //[self getDeviceMsg];
+            }
+            else
+            {
+                [weakself showAlert:@"连接设备失败"];
+            }
+            
+        });
+
+    
+    } withSureButtonBlock:^{
+       
+        
+        
+    }];
+
+    
+}
 
 - (void)readerCardBtnClicked:(UIButton *)sender
 {
-    //WebViewController *webVC = [[WebViewController alloc] init];
-    //webVC.title = @"";
-    
-    //[self.navigationController pushViewController:webVC animated:YES];
-    
     if([DKBleManager sharedInstance].isConnect)
     {
         self.waitingView.strInputData = self.inputTextView.text;
     
         [self.waitingView show];
+        
+        WEAK_SELF(weakself)
+        
+        self.waitingView.CardReaderCompletionBlock = ^(NSString *strURL){
+        
+        
+            WebViewController *webVC = [[WebViewController alloc] init];
+            
+            webVC.strUrl = strURL;
+            
+            [weakself.navigationController pushViewController:webVC animated:YES];
+        
+        };
     }
     else
     {

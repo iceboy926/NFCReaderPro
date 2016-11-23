@@ -13,7 +13,7 @@
 
 @property (nonatomic, assign) int timeout;
 
-@property (nonatomic, strong) void (^CardReaderWaittingBlock)();
+@property (nonatomic, strong) void (^CardReaderCompletionBlock)(NSString *strURL);
 
 @property (nonatomic, strong) NSString *strInputData;
 

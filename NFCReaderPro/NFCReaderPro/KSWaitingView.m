@@ -15,7 +15,7 @@
 @interface KSWaitingView()
 {
     UIView *_mask;
-    UIView *_messageBg;
+    UIImageView *_messageBg;
     UIActivityIndicatorView *_indicator;
     UILabel *_messageLabel;
     NSLock *locker;
@@ -54,16 +54,15 @@
         [self addSubview:mask];
         
         
-        UIView *messageBoxBg = [[UIView alloc] initWithFrame:KSMessageBoxFrame];
-        messageBoxBg.center = CGPointMake(CGRectGetWidth(self.frame)/2.0f, CGRectGetHeight(self.frame)/2.0f);
-//        messageBoxBg.image = [[UIImage imageNamed:@"alert_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+        UIImageView *messageBoxBg = [[UIImageView alloc] initWithFrame:KSMessageBoxFrame];
+        messageBoxBg.center = CGPointMake(CGRectGetWidth(self.frame)/2.0f, CGRectGetHeight(self.frame)/2.0f);        messageBoxBg.image = [[UIImage imageNamed:@"alert_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
         messageBoxBg.layer.shadowColor = [UIColor blackColor].CGColor;
         messageBoxBg.layer.shadowOffset = CGSizeMake(0, 0);
         messageBoxBg.layer.shadowRadius = 5.0f;
         messageBoxBg.layer.shadowOpacity = 0.2;
         messageBoxBg.layer.shouldRasterize = YES;
         
-        messageBoxBg.backgroundColor = [UIColor whiteColor];
+        //messageBoxBg.backgroundColor = [UIColor whiteColor];
         
         _messageBg = messageBoxBg;
         [self addSubview:messageBoxBg];
@@ -80,7 +79,7 @@
         messageLabel.textAlignment = NSTextAlignmentCenter;
         messageLabel.textColor = [UIColor blackColor];
         messageLabel.backgroundColor = [UIColor clearColor];
-        messageLabel.font = [UIFont systemFontOfSize:14.0f];
+        messageLabel.font = [UIFont systemFontOfSize:18.0f];
         messageLabel.numberOfLines = 2;
         messageLabel.lineBreakMode = NSLineBreakByWordWrapping;//UILineBreakModeWordWrap;
         _messageLabel = messageLabel;
@@ -206,7 +205,7 @@
                                                 
                                                 NSData *dataout = [NSData dataWithHexString:stroutData];
                                                 
-                                                NSString *strurl = [[NSString alloc] initWithData:dataout encoding:NSUTF8StringEncoding];
+                                                __block NSString *strurl = [[NSString alloc] initWithData:dataout encoding:NSUTF8StringEncoding];
                                                 
                                                 NSLog(@"strurl = %@", strurl);
                                                 
@@ -215,14 +214,19 @@
                                                 [card close];
                                                 
                                                 [_indicator stopAnimating];
-                                                weakself.messageLabel.text = @"读卡成功";
+                                                [_timer invalidate];
+                                                weakself.messageLabel.text = @"读卡成功,即将跳转到相关页面";
                                                 weakself.messageLabel.textColor = [UIColor redColor];
                                                 
-                                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5*NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5*NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                                                 
                                                     [weakself hide];
                                                     
-                                                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:strurl]];
+                                                    if(weakself.CardReaderCompletionBlock)
+                                                    {
+                                                        weakself.CardReaderCompletionBlock(strurl);
+                                                    }
+                                                    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:strurl]];
                                                 });
                                             }];
                                         }

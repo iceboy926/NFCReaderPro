@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		101BD9BF1DE53B4C0037EE82 /* BLEReaderConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 101BD9BE1DE53B4C0037EE82 /* BLEReaderConnect.m */; };
+		101BD9C31DE542790037EE82 /* ListSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 101BD9C21DE542790037EE82 /* ListSelectView.m */; };
 		10A7A9381DE2C71900FEBD5F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A9371DE2C71900FEBD5F /* main.m */; };
 		10A7A93B1DE2C71900FEBD5F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A93A1DE2C71900FEBD5F /* AppDelegate.m */; };
 		10A7A93E1DE2C71900FEBD5F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A7A93D1DE2C71900FEBD5F /* MainViewController.m */; };
@@ -41,8 +41,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		101BD9BD1DE53B4C0037EE82 /* BLEReaderConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEReaderConnect.h; sourceTree = "<group>"; };
-		101BD9BE1DE53B4C0037EE82 /* BLEReaderConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEReaderConnect.m; sourceTree = "<group>"; };
+		101BD9C11DE542790037EE82 /* ListSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListSelectView.h; sourceTree = "<group>"; };
+		101BD9C21DE542790037EE82 /* ListSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListSelectView.m; sourceTree = "<group>"; };
+		101BD9C41DE542F60037EE82 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		10A7A9331DE2C71900FEBD5F /* NFCReaderPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NFCReaderPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10A7A9371DE2C71900FEBD5F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		10A7A9391DE2C71900FEBD5F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -118,6 +119,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		101BD9C01DE5424D0037EE82 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				101BD9C11DE542790037EE82 /* ListSelectView.h */,
+				101BD9C21DE542790037EE82 /* ListSelectView.m */,
+				10A7A9941DE2F25900FEBD5F /* KSWaitingView.h */,
+				10A7A9951DE2F25900FEBD5F /* KSWaitingView.m */,
+				10A7A98C1DE2D58700FEBD5F /* BarChart.h */,
+				10A7A98D1DE2D58700FEBD5F /* BarChart.m */,
+			);
+			name = CustomView;
+			sourceTree = "<group>";
+		};
 		10A7A92A1DE2C71900FEBD5F = {
 			isa = PBXGroup;
 			children = (
@@ -139,13 +153,10 @@
 		10A7A9351DE2C71900FEBD5F /* NFCReaderPro */ = {
 			isa = PBXGroup;
 			children = (
+				101BD9C01DE5424D0037EE82 /* CustomView */,
 				10A7A9821DE2CA5600FEBD5F /* Config */,
 				10D4DFC71DE3E49F0089B1F9 /* NFCCard.h */,
 				10D4DFC81DE3E49F0089B1F9 /* NFCCard.m */,
-				10A7A9941DE2F25900FEBD5F /* KSWaitingView.h */,
-				10A7A9951DE2F25900FEBD5F /* KSWaitingView.m */,
-				10A7A98C1DE2D58700FEBD5F /* BarChart.h */,
-				10A7A98D1DE2D58700FEBD5F /* BarChart.m */,
 				10A7A9391DE2C71900FEBD5F /* AppDelegate.h */,
 				10A7A93A1DE2C71900FEBD5F /* AppDelegate.m */,
 				10A7A97E1DE2C9BF00FEBD5F /* NRBaseNavigationController.h */,
@@ -158,8 +169,6 @@
 				10A7A9851DE2D3C500FEBD5F /* ScanDeviceListViewController.m */,
 				10A7A98F1DE2EB9F00FEBD5F /* WebViewController.h */,
 				10A7A9901DE2EB9F00FEBD5F /* WebViewController.m */,
-				101BD9BD1DE53B4C0037EE82 /* BLEReaderConnect.h */,
-				101BD9BE1DE53B4C0037EE82 /* BLEReaderConnect.m */,
 				10A7A94D1DE2C7D800FEBD5F /* Vendor */,
 				10A7A93F1DE2C71900FEBD5F /* Main.storyboard */,
 				10A7A9421DE2C71900FEBD5F /* Assets.xcassets */,
@@ -235,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				10A7A9811DE2CA4900FEBD5F /* PrefixHeader.pch */,
+				101BD9C41DE542F60037EE82 /* Header.h */,
 				10A7A9831DE2CA8700FEBD5F /* Macros.h */,
 			);
 			name = Config;
@@ -381,13 +391,13 @@
 			files = (
 				10A7A9861DE2D3C500FEBD5F /* ScanDeviceListViewController.m in Sources */,
 				10A7A9621DE2C81100FEBD5F /* NSData+Hex.m in Sources */,
+				101BD9C31DE542790037EE82 /* ListSelectView.m in Sources */,
 				10A7A97D1DE2C82500FEBD5F /* Ultralight.m in Sources */,
 				10A7A93E1DE2C71900FEBD5F /* MainViewController.m in Sources */,
 				10A7A9601DE2C81100FEBD5F /* DKDeviceManager.m in Sources */,
 				10A7A95E1DE2C81100FEBD5F /* DKBleManager.m in Sources */,
 				10A7A9761DE2C82500FEBD5F /* CpuCard.m in Sources */,
 				10A7A9801DE2C9BF00FEBD5F /* NRBaseNavigationController.m in Sources */,
-				101BD9BF1DE53B4C0037EE82 /* BLEReaderConnect.m in Sources */,
 				10A7A95F1DE2C81100FEBD5F /* DKComByteManager.m in Sources */,
 				10A7A97A1DE2C82500FEBD5F /* Iso15693Card.m in Sources */,
 				10A7A9961DE2F25900FEBD5F /* KSWaitingView.m in Sources */,
