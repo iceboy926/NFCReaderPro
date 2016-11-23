@@ -18,7 +18,6 @@
 @property (nonatomic, strong)UIButton *bleManagerBtn;
 @property (nonatomic, strong) DKDeviceManager  *deviceManager;
 @property (nonatomic, strong) NSMutableString  *msgBuffer;
-@property (nonatomic, strong)UITextView *msgTextView;
 @property (nonatomic, strong) UITextField *inputTextView;
 @property (nonatomic, strong) UIButton *readerCardBtn;
 @property (nonatomic, strong) KSWaitingView *waitingView;
@@ -32,8 +31,8 @@
     // Do any additional setup after loading the view, typically from a nib.
 
     [self.view addSubview:self.bleManagerBtn];
-    [self.view addSubview:self.msgTextView];
     [self.view addSubview:self.readerCardBtn];
+    
     [self.view addSubview:self.inputTextView];
 
     [self setupNavigationView];
@@ -41,6 +40,9 @@
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchView:)];
+    
+    [self.view addGestureRecognizer:gesture];
 }
 
 
@@ -58,7 +60,15 @@
     [self setTitle:@"NFCReader"];
 }
 
+- (void)touchView:(UITapGestureRecognizer *)gesture
+{
+    [self resignAllResponse];
+}
 
+- (void)resignAllResponse
+{
+    [self.inputTextView resignFirstResponder];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -78,30 +88,23 @@
         
     }];
     
-    [self.msgTextView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.inputTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(_bleManagerBtn.mas_bottom).offset(10);
-        make.left.equalTo(self.view.mas_left).offset(20);
-        make.right.equalTo(self.view.mas_right).offset(-20);
-        make.height.equalTo(self.view.mas_height).multipliedBy(0.3);
+        make.top.equalTo(_bleManagerBtn.mas_bottom).offset(20);
+        make.size.mas_equalTo(CGSizeMake(280, 50));
     }];
-    
+
+
     [self.readerCardBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(_msgTextView.mas_bottom).offset(10);
+        make.top.equalTo(_inputTextView.mas_bottom).offset(10);
         make.size.mas_equalTo(CGSizeMake(150, 50));
         
     }];
     
-    [self.inputTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(_readerCardBtn.mas_bottom).offset(10);
-        make.size.mas_equalTo(CGSizeMake(280, 50));
-    }];
-}
+ }
 
 #pragma mark lazy load
 
@@ -122,18 +125,6 @@
     return _bleManagerBtn;
 }
 
-- (UITextView *)msgTextView
-{
-    if(_msgTextView == nil)
-    {
-        _msgTextView = [[UITextView alloc] initWithFrame:CGRectZero];
-        
-        _msgTextView.textColor = navigaterBarColor;
-
-    }
-    
-    return _msgTextView;
-}
 
 - (UITextField *)inputTextView
 {
@@ -214,7 +205,7 @@
             if(blConnect)
             {
                 [self showAlert:@"连接设备成功"];
-                [self getDeviceMsg];
+                //[self getDeviceMsg];
             }
             else
             {
@@ -247,158 +238,6 @@
     }
 }
 
--(void)showWaitView
-{
-    __block KSWaitingView *waitView = [[KSWaitingView alloc] init];
-    waitView.strInputData = self.inputTextView.text;
-    [waitView show];
-    
-    __block BOOL complete = NO;
-//    PFN_CALLBACK_GetTranSignature callback = param->pfn_CallBack_GetTranSignature;
-//    [GCDHelper dispatchBlock:^{
-//        if (callback) {
-//            ret = callback(param->pbSignedData, param->pulSignedDataLen);
-//        }
-//        
-//    } complete:^{
-//        
-//        complete = YES;
-//        if (waitView.currentRunLoop) {
-//            waitView.ret = ret;
-//            CFRunLoopStop(waitView.currentRunLoop);
-//        }
-//        
-//    }];
-    
-    
-    
-    [self readerCardActionWithComplete:^(NSString *strOutData){
-        
-        complete = YES;
-        
-        NSLog(@"\n read out data is %@ \n", strOutData);
-        
-        if(waitView.currentRunLoop)
-        {
-            CFRunLoopStop(waitView.currentRunLoop);
-        }
-        
-    }];
-    
-    if (!complete) {
-        waitView.currentRunLoop = CFRunLoopGetCurrent();
-        CFRunLoopRun();
-    }
-    
-    [waitView hide];
-}
-
-
-- (void)readerCardActionWithComplete:(void(^)(NSString *strOutData))completion
-{
-    
-    [self.deviceManager requestRfmSearchCard:DKIso14443A_CPUType callbackBlock:^(BOOL isblnIsSus, DKCardType cardType, NSData *CardSn, NSData *bytCarATS) {
-        
-        if(isblnIsSus)
-        {
-            NSLog(@"read card OK..card type is %d", cardType);
-            
-            if (cardType == DKIso14443A_CPUType)
-            {
-                CpuCard *card = [self.deviceManager getCard];
-                if(card != nil)
-                {
-                    
-                    [card apduExchange:[NFCCard getSelectMainFileCmdByte] callback:^(BOOL isCmdRunSuc, NSData *apduRtnData){
-                        
-                        if(isCmdRunSuc)
-                        {
-                            NSData *dataSend = [NFCCard writeCmdByteWithString:self.inputTextView.text];
-                            [card apduExchange:dataSend callback:^(BOOL isCmdRunSuc, NSData *apduRtnData){
-                                
-                                if(isCmdRunSuc)
-                                {
-                                    
-                                    [card apduExchange:[NFCCard readCmdByte] callback:^(BOOL isCmdRunSuc, NSData *apduRtnData){
-                                        
-                                        
-                                        NSString *strOut = [apduRtnData hexadecimalString];
-                                        
-                                        //NSLog(@"read out data is %@", strOut);
-                                        
-                                        if(completion)
-                                        {
-                                            completion(strOut);
-                                        }
-                                        
-                                    }];
-                                }
-                                
-                            }];
-                        }
-                        
-                        
-                    }];
-                }
-                
-            }
-            else if (cardType == DKIso14443B_CPUType)
-            {
-                
-            }
-            else if (cardType == DKFeliCa_Type)
-            {
-                
-            }
-            else if (cardType == DKUltralight_type)
-            {
-                Ntag21x *card = [self.deviceManager getCard];
-                if (card != nil) {
-                    //                    [self.msgBuffer setString:@"寻到Ultralight卡 －>UID:"];
-                    //                    [self.msgBuffer appendString:[NSString stringWithFormat:@"%@\r\n", card.uid]];
-                    //                    dispatch_async(dispatch_get_main_queue(), ^{
-                    //                        self.msgTextView.text = self.msgBuffer;
-                    //                    });
-                    //                    //发送读块0数据
-                    //                    [self.msgBuffer appendString:[NSString stringWithFormat:@"\r\n读块0\r\n"]];
-                    //                    self.msgTextView.text = self.msgBuffer;
-                    [card ultralightRead:0 callbackBlock:^(BOOL isSuc, NSData *returnData) {
-                        if (isSuc) {
-                            
-                            NSLog(@"返回:%@\r\n", returnData);
-                            //                            [self.msgBuffer appendString:[NSString stringWithFormat:@"返回:%@\r\n", returnData]];
-                            //                            dispatch_async(dispatch_get_main_queue(), ^{
-                            //                                self.msgTextView.text = self.msgBuffer;
-                            //                            });
-                            
-                            
-                            if(completion)
-                            {
-                                completion([NSString stringWithFormat:@"返回：%@\r\n", returnData]);
-                            }
-
-                        }
-                        
-                        [card close];
-                    }];
-                }
-                
-                
-            }
-            else if (cardType == DKMifare_Type)
-            {
-                
-            }
-            
-            
-            
-        }
-    }];
-    
-
-}
-
-
 
 -(void)showAlert:(NSString *)msg
 {
@@ -422,11 +261,10 @@
 -(void)getDeviceMsg {
     
     [self.msgBuffer setString:@""];
-    self.msgTextView.text = @"";
     [self.deviceManager requestDeviceVersionWithCallbackBlock:^(NSUInteger versionNum) {
         [self.msgBuffer appendString:@"SDK版本v1.4.0 20161026\r\n"];
         [self.msgBuffer appendString:[NSString stringWithFormat:@"设备版本：%02lx\r\n", (unsigned long)versionNum]];
-        self.msgTextView.text = self.msgBuffer;
+
         [self.deviceManager requestDeviceBtValueWithCallbackBlock:^(float btVlueMv) {
             [self.msgBuffer appendString:[NSString stringWithFormat:@"设备电池电压：%.2fV\r\n", btVlueMv]];
             if (btVlueMv < 3.4) {
@@ -435,7 +273,7 @@
             else {
                 [self.msgBuffer appendString:@"设备电池电量充足！\r\n"];
             }
-            self.msgTextView.text = self.msgBuffer;
+            
         }];
     }];
 }

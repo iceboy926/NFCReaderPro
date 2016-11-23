@@ -105,6 +105,7 @@
     self.hidden = NO;
     
     self.messageLabel.text = @"等待读卡操作......";
+    self.messageLabel.textColor = [UIColor blackColor];
     
     _mask.alpha = 0;
     [UIView animateWithDuration:0.1 animations:^{
@@ -153,15 +154,13 @@
     //_messageBg.layer.transform = CATransform3DIdentity;
     [_indicator stopAnimating];
     
-   // [UIView animateWithDuration:0.1 animations:^{
-        //_mask.alpha = 0.0f;
-        [self removeFromSuperview];
-    //}];
+    self.hidden = YES;
     
 }
 
 - (void)refresh:(NSTimer *)timer
-{    
+{
+    WEAK_SELF(weakself)
     [self.deviceManager requestRfmSearchCard:DKCardTypeDefault callbackBlock:^(BOOL isblnIsSus, DKCardType cardType, NSData *CardSn, NSData *bytCarATS) {
     
         if(isblnIsSus)
@@ -211,11 +210,20 @@
                                                 
                                                 NSLog(@"strurl = %@", strurl);
                                                 
-                                                [self hide];
                                                 
-                                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:strurl]];
                                                 
                                                 [card close];
+                                                
+                                                [_indicator stopAnimating];
+                                                weakself.messageLabel.text = @"读卡成功";
+                                                weakself.messageLabel.textColor = [UIColor redColor];
+                                                
+                                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5*NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                                
+                                                    [weakself hide];
+                                                    
+                                                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:strurl]];
+                                                });
                                             }];
                                         }
                                         
@@ -237,26 +245,6 @@
             }
             else if (cardType == DKUltralight_type)
             {
-                Ntag21x *card = [self.deviceManager getCard];
-                if (card != nil) {
-                    
-                    NSLog(@"寻到Ultralight卡 －>UID: %@", card.uid);
-                    
-                    [card ultralightRead:0 callbackBlock:^(BOOL isSuc, NSData *returnData) {
-                        if (isSuc) {
-                            
-                            NSString *strOut = [returnData hexadecimalString];
-                            
-                            NSLog(@"DKUltralight_type read out data is %@", strOut);
-                            
-                            sleep(2);
-                            
-                        }
-                        
-                        [card close];
-                    }];
-                    
-                }
             }
             else if (cardType == DKMifare_Type)
             {

@@ -94,6 +94,7 @@ static onWriteSuccessListener onWriteSuccessListenerBlock = nil;
     [peripherals removeAllObjects];
     
         NSDictionary* scanOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
+    
     [self.manager scanForPeripheralsWithServices:nil options:scanOptions];
 }
 -(void)startScanWithCallbackBlock:(onScannerCallbackListener)block {
