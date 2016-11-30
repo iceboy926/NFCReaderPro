@@ -145,20 +145,21 @@
     {
         //float distance = [self getDistByRSSI:[RSSI intValue]];
         
-        NSLog(@"didDiscoverPeripheral peripheral name is %@ RSSI is %@", peripheral.name, RSSI);
-        
-        NSDictionary *peripheralDic = @{peripheral.name: peripheral};
-        
-        NSIndexPath *index = [NSIndexPath indexPathForRow:[_peripheralArray count] inSection:0];
-        
-        [_peripheralArray addObject:peripheralDic];
-        
-        
-        [mytableView beginUpdates];
-        
-        [mytableView insertRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationRight];
-        
-        [mytableView endUpdates];
+        if(![_peripheralArray containsObject:peripheral])
+        {
+            
+            NSIndexPath *index = [NSIndexPath indexPathForRow:[_peripheralArray count] inSection:0];
+            
+            [_peripheralArray addObject:peripheral];
+            
+            
+            [mytableView beginUpdates];
+            
+            [mytableView insertRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationRight];
+            
+            [mytableView endUpdates];
+        }
+    
     }
     
 }
@@ -299,9 +300,9 @@
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault
                                    reuseIdentifier:cellid];
         
-        NSDictionary *dicResult = _peripheralArray[indexPath.row];
+        CBPeripheral *peripheral = _peripheralArray[indexPath.row];
         
-        cell.textLabel.text = [dicResult allKeys][0];
+        cell.textLabel.text = peripheral.name;
         
     }
     
@@ -314,9 +315,9 @@
 //当选择下拉列表中的一行时，设置文本框中的值，隐藏下拉列表
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *peripheralDic = [_peripheralArray objectAtIndex:[indexPath row]];
     
-     __block  CBPeripheral *selectedPeripheral = [peripheralDic allValues][0];
+    
+     __block  CBPeripheral *selectedPeripheral = [_peripheralArray objectAtIndex:[indexPath row]];
     
     WEAK_SELF(weakself)
     [self.bleManager connect:selectedPeripheral callbackBlock:^(BOOL isConnectSucceed){
