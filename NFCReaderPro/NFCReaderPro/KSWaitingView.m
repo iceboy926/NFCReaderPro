@@ -173,21 +173,26 @@
                 {
                     [card apduExchange:[NFCCard getSelectMainFileCmdByte] callback:^(BOOL isCmdRunSuc, NSData *apduRtnData){
                     
-                        if(isCmdRunSuc)
+                        NSString *strApduRtnData  = [apduRtnData hexadecimalString];
+                        
+                        if(isCmdRunSuc && [strApduRtnData hasSuffix:@"9000"])
                         {
                             [card apduExchange:[NFCCard readCmdByte] callback:^(BOOL isCmdRunSuc, NSData *apduRtnData){
                                 
-                                if(isCmdRunSuc)
+                                NSString *strOut = [apduRtnData hexadecimalString];
+                                
+                                NSLog(@" read out data is %@", strOut);
+                                
+                                if(isCmdRunSuc && [strOut hasSuffix:@"9000"])
                                 {
                                     
-                                    NSString *strOut = [apduRtnData hexadecimalString];
-                                    
-                                    NSLog(@" read out data is %@", strOut);
+                                   
                                     
                                     NSData *dataSend = [NFCCard writeCmdByteWithString:self.strInputData];
                                     [card apduExchange:dataSend callback:^(BOOL isCmdRunSuc, NSData *apduRtnData){
                                         
-                                        if(isCmdRunSuc)
+                                        
+                                        if(isCmdRunSuc && [[apduRtnData hexadecimalString] hasSuffix:@"9000"])
                                         {
                                             
                                             [card apduExchange:[NFCCard readCmdByte] callback:^(BOOL isCmdRunSuc, NSData *apduRtnData){
